@@ -1,4 +1,4 @@
-Package: linconGuassR
+Package: linconGaussR
 Type: Package
 Title: Sampling Normal distribution under linear constraints.
 Version: 0.1
