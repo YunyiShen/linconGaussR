@@ -18,6 +18,15 @@ public:
     int M;// number of constraints
     int D;// dimension of normal
     bool intersection;// whether to use intersection of the constrain
+    LinearConstraints(){
+        arma::mat AA(0,0);
+        arma::vec bb((uword)0);
+        A = AA;
+        b = bb;
+        M = 0;
+        D = 0;
+        intersection = true;
+    }
     LinearConstraints(const arma::mat &AA, const arma::vec bb, bool intersection_)
     {
         /* """
@@ -40,13 +49,13 @@ public:
         :param x: location, shape (D, N)
         :return: Ax + b */
         arma::mat temp = A * x;
-        temp.each_col += b;
+        temp.each_col() += b;
         return temp;
     }
     arma::Mat<int> indicator_intersection(const arma::mat &x);
     arma::Mat<int> indicator_union(const arma::mat &x);
     arma::Mat<int> integration_domain(const arma::mat &x);
-}
+};
 
 arma::Mat<int>
 LinearConstraints::indicator_intersection(const arma::mat &x)
@@ -57,8 +66,8 @@ LinearConstraints::indicator_intersection(const arma::mat &x)
         :return: 1 if all linear functions are >= 0, else 0. */
 
     int N = x.n_cols;
-    arma::mat temp;
-    eval = this.evaluate(x);
+    int temp;
+    arma::mat eval = this->evaluate(x);
     int temp;
     Mat<int> res(1, N, fill::ones);
     for (int i = 0; i < N; i++)
@@ -68,7 +77,7 @@ LinearConstraints::indicator_intersection(const arma::mat &x)
         {
             temp *= eval(j, i) >= 0;
         }
-        res(i) = temp
+        res(i) = temp;
     }
     return res;
 }
@@ -82,8 +91,8 @@ arma::Mat<int> LinearConstraints::indicator_union(const arma::mat &x)
 
 
     int N = x.n_cols;
-    arma::mat temp;
-    eval = this.evaluate(x);
+    int temp;
+    arma::mat eval = this->evaluate(x);
     int temp;
     Mat<int> res(1, N, fill::ones);
     for (int i = 0; i < N; i++)
@@ -93,7 +102,7 @@ arma::Mat<int> LinearConstraints::indicator_union(const arma::mat &x)
         {
             temp *= eval(j, i) < 0;
         }
-        res(i) = 1 - temp
+        res(i) = 1 - temp;
     }
     return res;
 }
@@ -106,11 +115,11 @@ arma::Mat<int> LinearConstraints::integration_domain(const arma::mat &x)
          */
     if (intersection)
     {
-        return (this.indicator_intersection(x));
+        return (this->indicator_intersection(x));
     }
     else
     {
-        return (this.indicator_union(x));
+        return (this->indicator_union(x));
     }
 }
 

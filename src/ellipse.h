@@ -20,8 +20,8 @@ class Ellipse{
         a1 = aa1;
         a2 = aa2;
     }
-    arma::vec x(arma::mat theta);
-}
+    arma::vec x(double theta);
+};
 
 arma::vec Ellipse::x(double theta){
     /* location on ellipse corresponding at angle theta
