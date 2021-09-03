@@ -53,7 +53,9 @@ arma::vec EllipticalSliceSampler::compute_next_point(arma::vec x0)
     {
         Rcpp::stop("ellipse is outside of integration domain, reconstruct a new ellipse (should not happen at all!)");
     }
+    //Rcout << "draw angle" << endl;
     double t_new = slice_sampler.draw_angle();
+    //Rcout << "finishing draw angle" << endl;
     return ellipse.x(t_new);
 }
 
@@ -80,12 +82,15 @@ void EllipticalSliceSampler::run()
         x = trans(loop_state.samples.row(n_sample - 1));
         for (int i = 0; i <= n_skip; i++)
         {
+            //Rcout << "compute next point" << endl;
             x = this->compute_next_point(x);
             while (arma::as_scalar(lincon.integration_domain(x)) != 1)
             {
+                //Rcout << "compute next point in while" << endl;
                 x = this->compute_next_point(x);
             }
         }
+        //Rcout << "update saved points" << endl;
         loop_state.update(x);
     }
 }

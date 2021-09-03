@@ -37,7 +37,7 @@ double AngleSampler::draw_angle()
 {
     arma::vec cum_len = this->_get_slices_cumulative_length();
     double l = cum_len(cum_len.n_elem - 1);
-    double sample = l * arma::randn<double>();
+    double sample = l * arma::randu<double>();
     int idx = 1;
     for (idx = 1; idx < cum_len.n_elem; idx++)
     {

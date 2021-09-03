@@ -82,7 +82,7 @@ arma::vec ActiveIntersections::find_active_intersections(){
     if(theta_active.n_elem==0){
         theta_active = {{0},{2*datum::pi}};
         
-        if(as_scalar(lincon.integration_domain(ellipse.x(2 * datum::pi * arma::randn<double>())))==0){
+        if(as_scalar(lincon.integration_domain(ellipse.x(2 * datum::pi * arma::randu<double>())))==0){
             ellipse_in_domain = false;
         }
     }

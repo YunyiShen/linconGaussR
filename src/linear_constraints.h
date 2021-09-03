@@ -60,7 +60,6 @@ LinearConstraints::indicator_intersection(const arma::mat &x)
     int N = x.n_cols;
     int temp;
     arma::mat eval = this->evaluate(x);
-    int temp;
     Mat<int> res(1, N, fill::ones);
     for (int i = 0; i < N; i++)
     {
@@ -84,7 +83,6 @@ arma::Mat<int> LinearConstraints::indicator_union(const arma::mat &x)
     int N = x.n_cols;
     int temp;
     arma::mat eval = this->evaluate(x);
-    int temp;
     Mat<int> res(1, N, fill::ones);
     for (int i = 0; i < N; i++)
     {
