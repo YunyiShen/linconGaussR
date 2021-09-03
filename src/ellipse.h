@@ -16,11 +16,12 @@ class Ellipse{
         :param a2: second vector defining the ellipse, shape (D, 1) */
     public:
         arma::vec a1, a2;
-    Ellipse(arma::vec aa1, arma::vec aa2){
-        a1 = aa1;
-        a2 = aa2;
-    }
-    arma::vec x(double theta);
+        Ellipse() = default;
+        Ellipse(arma::vec aa1, arma::vec aa2){
+            a1 = aa1;
+            a2 = aa2;
+        }
+        arma::vec x(double theta);
 };
 
 arma::vec Ellipse::x(double theta){

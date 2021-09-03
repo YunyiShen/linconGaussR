@@ -13,20 +13,12 @@ using namespace std;
 class LinearConstraints
 {
 public:
-    arma::mat A; // linear constrain's coefficients
-    arma::vec b; // offset of the linear constrains
-    int M;// number of constraints
-    int D;// dimension of normal
-    bool intersection;// whether to use intersection of the constrain
-    LinearConstraints(){
-        arma::mat AA(0,0);
-        arma::vec bb((uword)0);
-        A = AA;
-        b = bb;
-        M = 0;
-        D = 0;
-        intersection = true;
-    }
+    arma::mat A;       // linear constrain's coefficients
+    arma::vec b;       // offset of the linear constrains
+    int M;             // number of constraints
+    int D;             // dimension of normal
+    bool intersection; // whether to use intersection of the constrain
+    LinearConstraints() = default;
     LinearConstraints(const arma::mat &AA, const arma::vec bb, bool intersection_)
     {
         /* """
@@ -88,7 +80,6 @@ arma::Mat<int> LinearConstraints::indicator_union(const arma::mat &x)
     /* Union of indicator functions taken to be 1 when the linear function is >= 0
         :param x: location, shape (D, N)
         :return: 1 if any of the linear functions is >= 0, else 0. */
-
 
     int N = x.n_cols;
     int temp;
