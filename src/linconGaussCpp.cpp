@@ -18,15 +18,13 @@ using namespace std;
 arma::mat linconGauss_cpp(int n, 
                             arma::mat A, 
                             arma::vec b, 
-                            arma::vec x_init,
                             arma::mat Sigma, 
                             arma::vec mu, 
+                            arma::vec x_init,
                             int nskp=5){
     arma::mat C = chol(Sigma);
     b += A * mu;
     A = A * C.t();
-    Rcout << A << endl;
-    Rcout << b << endl;
     LinearConstraints lincon(A,b,true);
     x_init = arma::solve(C.t(), x_init-mu);
     
