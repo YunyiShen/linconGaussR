@@ -14,6 +14,7 @@ isPD <- function(matr){
 #' @param Sigma covariance matrix of the Gaussian
 #' @param mu mean vector of the Gaussian
 #' @param x_init the sample to start with, if NULL, a sample will be drawn using rejection method
+#' @param intersection bool whether sample from the intersection or the union of the linear constraints, default true, sample from the intersection
 #' @param n_retry_init how many times to try finding a initial value 
 #' @param nskp how many sample to skip during the sampling routine
 #' @return a matrix with truncated sample, row as samples
@@ -26,7 +27,7 @@ isPD <- function(matr){
 #' abline(v=0)
 #' 
 
-linconGauss <- function(n, A, b, Sigma, mu, x_init = NULL, n_retry_init = 1000,nskp = 5){
+linconGauss <- function(n, A, b, Sigma, mu, x_init = NULL, intersection = TRUE,n_retry_init = 1000,nskp = 5){
   M <- nrow(A)
   D <- ncol(A)
   b <- as.matrix(b)
@@ -60,5 +61,5 @@ linconGauss <- function(n, A, b, Sigma, mu, x_init = NULL, n_retry_init = 1000,n
       stop("initial point must have the same dimension as Sigma")
     }
   }
-  linconGauss_cpp(n,  A , b , Sigma,  mu,x_init , nskp )
+  linconGauss_cpp(n,  A , b , Sigma,  mu,x_init , intersection,nskp )
 }

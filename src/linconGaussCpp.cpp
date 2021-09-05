@@ -21,11 +21,12 @@ arma::mat linconGauss_cpp(int n,
                             arma::mat Sigma, 
                             arma::vec mu, 
                             arma::vec x_init,
+                            bool intersection=true,
                             int nskp=5){
     arma::mat C = chol(Sigma);
     b += A * mu;
     A = A * C.t();
-    LinearConstraints lincon(A,b,true);
+    LinearConstraints lincon(A,b,intersection);
     x_init = arma::solve(C.t(), x_init-mu);
     
     EllipticalSliceSampler sampler(n,lincon,nskp,x_init);

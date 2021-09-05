@@ -5,7 +5,17 @@
 \title{Sample Gaussian distribution with linear constraints
 Taking truncated sample of Gaussian distribution over a linear constraint domain.}
 \usage{
-linconGauss(n, A, b, Sigma, mu, x_init = NULL, n_retry_init = 1000, nskp = 5)
+linconGauss(
+  n,
+  A,
+  b,
+  Sigma,
+  mu,
+  x_init = NULL,
+  intersection = TRUE,
+  n_retry_init = 1000,
+  nskp = 5
+)
 }
 \arguments{
 \item{n}{number of samples to take}
@@ -19,6 +29,8 @@ linconGauss(n, A, b, Sigma, mu, x_init = NULL, n_retry_init = 1000, nskp = 5)
 \item{mu}{mean vector of the Gaussian}
 
 \item{x_init}{the sample to start with, if NULL, a sample will be drawn using rejection method}
+
+\item{intersection}{bool whether sample from the intersection or the union of the linear constraints, default true, sample from the intersection}
 
 \item{n_retry_init}{how many times to try finding a initial value}
 
