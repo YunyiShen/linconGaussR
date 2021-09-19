@@ -1,8 +1,9 @@
-#ifndef INTEGRATION_LOOP_H
-#define INTEGRATION_LOOP_H
+#ifndef LINCONGAUSSR_INTEGRATION_LOOP_H
+#define LINCONGAUSSR_INTEGRATION_LOOP_H
 
 #include "loop.h"
 
+namespace linconGaussR{
 class IntegrationLoop: public Loop {
     public:
         int n_samples;
@@ -12,7 +13,8 @@ class IntegrationLoop: public Loop {
             n_samples = nsamples;
             dim = linear_con.D;
         }
-        void run();
+        inline void run();
 };
 
+}
 #endif
