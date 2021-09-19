@@ -20,3 +20,5 @@ points(my_sample,col = "red")
 abline(h=0)
 abline(v=0)
 ```
+
+For developers: Files in `src` is quite a stand-alone C++ implementation of the algorithm, just relies on `RcppArmadillo` to call `armadillo` from R. To use it in pure C++ or to continue develope in R, you can copy it out and include `armadillo.h` if necessary. Utilities are in those headers, classes are very similar to the original Python implementation, main function is in `src/linconGaussCpp.cpp`.
