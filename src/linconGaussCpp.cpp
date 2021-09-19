@@ -1,17 +1,10 @@
 // [[Rcpp::depends(RcppArmadillo)]]
-#include "active_intersections.h"
-#include "angle_sampler.h"
-#include "ellipse.h"
-#include "linear_constraints.h"
-#include "loop.h"
-#include "elliptical_slice_sampling.h"
-
-#include <math.h>
-#include <RcppArmadillo.h>
+#include <linconGaussR.h>
 
 using namespace Rcpp;
 using namespace arma;
 using namespace std;
+using namespace linconGaussR;
 
 
 //[[Rcpp::export]]
@@ -23,17 +16,5 @@ arma::mat linconGauss_cpp(int n,
                             arma::vec x_init,
                             bool intersection=true,
                             int nskp=5){
-    arma::mat C = chol(Sigma);
-    b += A * mu;
-    A = A * C.t();
-    LinearConstraints lincon(A,b,intersection);
-    x_init = arma::solve(C.t(), x_init-mu);
-    
-    EllipticalSliceSampler sampler(n,lincon,nskp,x_init);
-    sampler.run();
-    arma::mat res = sampler.loop_state.samples;
-    res = res * C;
-    res.each_row() += mu.t();
-
-    return res;
+    return linconGaussR::linconGauss_cpp(n,A,b,Sigma,mu,x_init,intersection,nskp);
 }
