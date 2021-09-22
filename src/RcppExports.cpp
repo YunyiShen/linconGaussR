@@ -12,9 +12,9 @@ Rcpp::Rostream<true>&  Rcpp::Rcout = Rcpp::Rcpp_cout_get();
 Rcpp::Rostream<false>& Rcpp::Rcerr = Rcpp::Rcpp_cerr_get();
 #endif
 
-// linconGauss_cpp1
-arma::mat linconGauss_cpp1(int n, arma::mat A, arma::vec b, arma::mat Sigma, arma::vec mu, arma::vec x_init, bool intersection, int nskp);
-RcppExport SEXP _linconGaussR_linconGauss_cpp1(SEXP nSEXP, SEXP ASEXP, SEXP bSEXP, SEXP SigmaSEXP, SEXP muSEXP, SEXP x_initSEXP, SEXP intersectionSEXP, SEXP nskpSEXP) {
+// linconGauss_cpp
+arma::mat linconGauss_cpp(int n, arma::mat A, arma::vec b, arma::mat Sigma, arma::vec mu, arma::vec x_init, bool intersection, int nskp);
+RcppExport SEXP _linconGaussR_linconGauss_cpp(SEXP nSEXP, SEXP ASEXP, SEXP bSEXP, SEXP SigmaSEXP, SEXP muSEXP, SEXP x_initSEXP, SEXP intersectionSEXP, SEXP nskpSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -26,13 +26,13 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< arma::vec >::type x_init(x_initSEXP);
     Rcpp::traits::input_parameter< bool >::type intersection(intersectionSEXP);
     Rcpp::traits::input_parameter< int >::type nskp(nskpSEXP);
-    rcpp_result_gen = Rcpp::wrap(linconGauss_cpp1(n, A, b, Sigma, mu, x_init, intersection, nskp));
+    rcpp_result_gen = Rcpp::wrap(linconGauss_cpp(n, A, b, Sigma, mu, x_init, intersection, nskp));
     return rcpp_result_gen;
 END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
-    {"_linconGaussR_linconGauss_cpp1", (DL_FUNC) &_linconGaussR_linconGauss_cpp1, 8},
+    {"_linconGaussR_linconGauss_cpp", (DL_FUNC) &_linconGaussR_linconGauss_cpp, 8},
     {NULL, NULL, 0}
 };
 

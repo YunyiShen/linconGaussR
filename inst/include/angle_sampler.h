@@ -17,7 +17,7 @@ public:
         rotation_angle = temp.rotation_angle;
         arma::vec slices = temp.shifted_angle;
         rotated_slices = slices;
-        rotated_slices.reshape(slices.n_elem / 2, 2);
+        rotated_slices.reshape( 2,slices.n_elem / 2);
     }
 
     inline arma::vec _get_slices_cumulative_length();
