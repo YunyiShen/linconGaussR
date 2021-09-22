@@ -8,7 +8,7 @@ using namespace linconGaussR;
 
 
 //[[Rcpp::export]]
-arma::mat linconGauss_cpp(int n, 
+arma::mat linconGauss_cpp1(int n, 
                             arma::mat A, 
                             arma::vec b, 
                             arma::mat Sigma, 
