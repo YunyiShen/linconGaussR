@@ -13,7 +13,7 @@ class IntegrationLoop: public Loop {
             n_samples = nsamples;
             dim = linear_con.D;
         }
-        inline void run();
+        //inline void run();
 };
 
 }

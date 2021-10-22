@@ -118,6 +118,7 @@ inline arma::Mat<int> LinearConstraints::integration_domain(const arma::mat &x)
 class ShiftedLinearConstraints : public LinearConstraints{
     public:
         arma::vec shift;
+        ShiftedLinearConstraints() = default;
         ShiftedLinearConstraints(arma::mat A, arma::vec b, arma::vec shift): LinearConstraints(A,b+shift,true), shift(shift){}
 };
 

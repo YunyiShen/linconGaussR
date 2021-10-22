@@ -47,13 +47,15 @@ public:
     SamplerState() = default;
     SamplerState(arma::vec x_init)
     {
-        samples = x_init.t();
+        //samples = x_init.t();
+        samples = x_init;
         iteration = 0;
     }
     inline void update(arma::vec x_new)
     {
         iteration++;
-        samples.insert_rows(iteration, x_new.t());
+        //samples.insert_rows(iteration, x_new.t());
+        samples.insert_cols(iteration, x_new);
         
     }
 };
