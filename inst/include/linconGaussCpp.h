@@ -29,6 +29,7 @@ inline arma::mat linconGauss_cpp(int n,
     
     EllipticalSliceSampler sampler(n,lincon,nskp,x_init);
     sampler.run();
+    
     arma::mat res = sampler.loop_state.samples.t();// C++ routines will return column vectors, we 
     res = res * C;
     res.each_row() += mu.t();

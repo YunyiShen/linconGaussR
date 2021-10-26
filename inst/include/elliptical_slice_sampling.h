@@ -81,8 +81,8 @@ inline void EllipticalSliceSampler::run()
     arma::vec x;
     while (!this->is_converged())
     {
-        int n_sample = loop_state.samples.n_rows;
-        x = trans(loop_state.samples.row(n_sample - 1));
+        int n_sample = loop_state.samples.n_cols;
+        x = (loop_state.samples.col(n_sample - 1));
         for (int i = 0; i <= n_skip; i++)
         {
             //Rcout << "compute next point" << endl;
@@ -91,7 +91,7 @@ inline void EllipticalSliceSampler::run()
             while (arma::as_scalar(lincon.integration_domain(x)) != 1)
             {
                 
-                x = trans(loop_state.samples.row(n_sample - 1));
+                x = (loop_state.samples.col(n_sample - 1));
                 x = this->compute_next_point(x);
                 
             }
